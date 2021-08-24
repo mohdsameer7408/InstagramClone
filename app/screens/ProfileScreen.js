@@ -8,6 +8,9 @@ import {
   View,
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
+import { MaterialIcons } from "@expo/vector-icons";
+
+import InstagramButton from "../components/InstagramButton";
 
 const { width } = Dimensions.get("window");
 
@@ -50,6 +53,21 @@ const ProfileScreen = () => {
           Memes On Coding
         </Text>
         <Text style={{ color: colors.text }}>Tech Memes</Text>
+      </View>
+      <View style={styles.buttonsContainer}>
+        <InstagramButton
+          style={styles.editProfileButton}
+          onButtonPress={() => {}}
+        >
+          <Text style={{ color: colors.text }}>Edit Profile</Text>
+        </InstagramButton>
+        <InstagramButton style={styles.discoverButton} onButtonPress={() => {}}>
+          <MaterialIcons
+            name="keyboard-arrow-down"
+            size={23}
+            color={colors.text}
+          />
+        </InstagramButton>
       </View>
     </ScrollView>
   );
@@ -97,5 +115,20 @@ const styles = StyleSheet.create({
   },
   profileBio: {
     width: width * 0.95,
+    marginBottom: 20,
+  },
+  buttonsContainer: {
+    width: width * 0.95,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 20,
+  },
+  editProfileButton: {
+    width: "89%",
+    height: 33,
+  },
+  discoverButton: {
+    width: "9%",
+    height: 33,
   },
 });
