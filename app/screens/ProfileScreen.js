@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Dimensions,
   Image,
   ScrollView,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
@@ -16,6 +17,7 @@ const { width } = Dimensions.get("window");
 
 const ProfileScreen = () => {
   const { colors } = useTheme();
+  const [isTabActive, setIsTabActive] = useState(true);
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -69,6 +71,69 @@ const ProfileScreen = () => {
           />
         </InstagramButton>
       </View>
+      <View style={styles.topTab}>
+        <TouchableOpacity
+          style={{
+            ...styles.tab,
+            borderColor: colors.text,
+            borderBottomWidth: isTabActive ? 2 : 0,
+          }}
+          onPress={() => setIsTabActive(true)}
+        >
+          <MaterialIcons
+            name="grid-on"
+            size={23}
+            color={isTabActive ? colors.text : "#888"}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            ...styles.tab,
+            borderBottomColor: colors.text,
+            borderWidth: isTabActive ? 0 : 2,
+          }}
+          onPress={() => setIsTabActive(false)}
+        >
+          <MaterialIcons
+            name="perm-contact-calendar"
+            size={23}
+            color={isTabActive ? "#888" : colors.text}
+          />
+        </TouchableOpacity>
+      </View>
+      {isTabActive ? (
+        <View style={styles.postsGrid}>
+          {Array(12)
+            .fill()
+            .map((_, index) => (
+              <TouchableOpacity key={index}>
+                <Image
+                  source={{
+                    uri: "https://i.pinimg.com/originals/97/d8/20/97d820675f0214b417d6545c899ec844.jpg",
+                  }}
+                  style={styles.postImage}
+                  resizeMode="cover"
+                />
+              </TouchableOpacity>
+            ))}
+        </View>
+      ) : (
+        <View style={styles.postsGrid}>
+          {Array(7)
+            .fill()
+            .map((_, index) => (
+              <TouchableOpacity key={index}>
+                <Image
+                  source={{
+                    uri: "https://i.pinimg.com/originals/97/d8/20/97d820675f0214b417d6545c899ec844.jpg",
+                  }}
+                  style={styles.postImage}
+                  resizeMode="cover"
+                />
+              </TouchableOpacity>
+            ))}
+        </View>
+      )}
     </ScrollView>
   );
 };
@@ -78,6 +143,7 @@ export default ProfileScreen;
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
+    paddingBottom: 50,
   },
   profileData: {
     width: width * 0.95,
@@ -130,5 +196,28 @@ const styles = StyleSheet.create({
   discoverButton: {
     width: "9%",
     height: 33,
+  },
+  topTab: {
+    width,
+    height: 40,
+    flexDirection: "row",
+    marginVertical: 5,
+  },
+  tab: {
+    width: width * 0.5,
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  postsGrid: {
+    width,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    flexWrap: "wrap",
+  },
+  postImage: {
+    width: width * 0.33,
+    height: 120,
+    marginBottom: 3,
   },
 });
