@@ -6,8 +6,10 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { useTheme } from "@react-navigation/native";
 
 const InstagramButton = ({ style, buttonColor, children, onButtonPress }) => {
+  const { colors } = useTheme();
   let TouchableComponent = TouchableOpacity;
 
   if (Platform.OS === "android" && Platform.Version > 21) {
@@ -24,7 +26,7 @@ const InstagramButton = ({ style, buttonColor, children, onButtonPress }) => {
         <View
           style={{
             ...styles.buttonWrapper,
-            backgroundColor: buttonColor ? buttonColor : "transparent",
+            backgroundColor: buttonColor ? buttonColor : colors.background,
           }}
         >
           {children}
@@ -42,14 +44,14 @@ const styles = StyleSheet.create({
     borderColor: "#888",
     borderWidth: 1,
     borderRadius: 4,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 8,
-    },
-    shadowOpacity: 0.4,
-    shadowRadius: 3,
-    elevation: 8,
+    // shadowColor: "#000",
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 8,
+    // },
+    // shadowOpacity: 0.4,
+    // shadowRadius: 3,
+    // elevation: 8,
   },
   buttonWrapper: {
     width: "100%",

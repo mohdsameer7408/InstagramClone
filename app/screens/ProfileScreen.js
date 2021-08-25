@@ -15,7 +15,7 @@ import InstagramButton from "../components/InstagramButton";
 
 const { width } = Dimensions.get("window");
 
-const ProfileScreen = () => {
+const ProfileScreen = ({ navigation }) => {
   const { colors } = useTheme();
   const [isTabActive, setIsTabActive] = useState(true);
 
@@ -59,7 +59,7 @@ const ProfileScreen = () => {
       <View style={styles.buttonsContainer}>
         <InstagramButton
           style={styles.editProfileButton}
-          onButtonPress={() => {}}
+          onButtonPress={() => navigation.navigate("EditProfileScreen")}
         >
           <Text style={{ color: colors.text }}>Edit Profile</Text>
         </InstagramButton>
@@ -89,8 +89,8 @@ const ProfileScreen = () => {
         <TouchableOpacity
           style={{
             ...styles.tab,
-            borderBottomColor: colors.text,
-            borderWidth: isTabActive ? 0 : 2,
+            borderColor: colors.text,
+            borderBottomWidth: isTabActive ? 0 : 2,
           }}
           onPress={() => setIsTabActive(false)}
         >
