@@ -19,9 +19,9 @@ const InstagramTabNavigator = () => {
       initialRouteName="HomeStack"
       screenOptions={({ route }) => ({
         headerShown: false,
+        headerStyle: { backgroundColor: colors.background },
         tabBarStyle: {
           backgroundColor: colors.background,
-          borderTopWidth: 0,
           height: 60,
         },
         tabBarActiveTintColor: colors.text,
@@ -55,7 +55,11 @@ const InstagramTabNavigator = () => {
       <Tab.Screen name="HomeStack" component={HomeStack} />
       <Tab.Screen name="SearchScreen" component={SearchScreen} />
       <Tab.Screen name="ReelsScreen" component={ReelsScreen} />
-      <Tab.Screen name="ActivityScreen" component={ActivityScreen} />
+      <Tab.Screen
+        name="ActivityScreen"
+        component={ActivityScreen}
+        options={{ headerShown: true, headerTitle: "Activity" }}
+      />
       <Tab.Screen name="ProfileStack" component={ProfileStack} />
     </Tab.Navigator>
   );

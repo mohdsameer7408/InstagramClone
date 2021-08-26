@@ -40,14 +40,15 @@ const EditProfileScreen = ({ navigation }) => {
       behavior={Platform.OS === "ios" ? "padding" : "position"}
       keyboardVerticalOffset={-30}
     >
-      {/* <InstagramAlert
+      <InstagramAlert
+        isAlertOpened={false}
         title="Unsaved Changes"
         message="Do you want to leave the changes that you made to your profile!"
         buttons={[
           { text: "Ok", onPress: () => {} },
           { text: "Cancel", onPress: () => {}, type: "danger" },
         ]}
-      /> */}
+      />
       <View style={styles.formContainer}>
         <Image
           style={styles.profileImage}

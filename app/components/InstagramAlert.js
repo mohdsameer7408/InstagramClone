@@ -21,7 +21,12 @@ const InstagramAlert = ({
   const { colors } = useTheme();
 
   return (
-    <Modal visible={true} statusBarTranslucent transparent animationType="fade">
+    <Modal
+      visible={isAlertOpened}
+      statusBarTranslucent
+      transparent
+      animationType="fade"
+    >
       <View style={styles.alertContainer}>
         <View style={{ ...styles.alert, backgroundColor: colors.card }}>
           <View style={styles.alertDetails}>
@@ -53,7 +58,7 @@ const InstagramAlert = ({
                 </TouchableOpacity>
               ))
             ) : (
-              <TouchableOpacity style={styles.button} onPress={() => {}}>
+              <TouchableOpacity style={styles.button} onPress={closeAlert}>
                 <Text style={{ ...styles.buttonText, color: colors.primary }}>
                   Ok
                 </Text>
