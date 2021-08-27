@@ -14,7 +14,7 @@ import { useTheme } from "@react-navigation/native";
 
 const { width } = Dimensions.get("window");
 
-const Chat = () => {
+const Chat = ({ navigation }) => {
   const { colors } = useTheme();
 
   let TouchableComponent = TouchableOpacity;
@@ -25,7 +25,11 @@ const Chat = () => {
 
   return (
     <View style={styles.chat}>
-      <TouchableComponent style={{ flex: 1 }} useForeground onPress={() => {}}>
+      <TouchableComponent
+        style={{ flex: 1 }}
+        useForeground
+        onPress={() => navigation.navigate("ChatScreen")}
+      >
         <View style={styles.chatWrapper}>
           <Image
             source={{

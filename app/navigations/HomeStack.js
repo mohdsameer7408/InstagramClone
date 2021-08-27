@@ -7,6 +7,8 @@ import HomeScreen from "../screens/HomeScreen";
 import HeaderTitle from "../components/HeaderTitle";
 import InstagramHeaderButton from "../components/InstagramHeaderButton";
 import ChatsScreen from "../screens/ChatsScreen";
+import ChatScreen from "../screens/ChatScreen";
+import ChatHeaderTitle from "../components/ChatHeaderTitle";
 
 const Stack = createStackNavigator();
 
@@ -46,6 +48,19 @@ const HomeStack = () => {
             <HeaderButtons HeaderButtonComponent={InstagramHeaderButton}>
               <Item title="video" iconName="video-outline" />
               <Item title="group" iconName="square-edit-outline" />
+            </HeaderButtons>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="ChatScreen"
+        component={ChatScreen}
+        options={{
+          headerTitle: (props) => <ChatHeaderTitle {...props} />,
+          headerRight: () => (
+            <HeaderButtons HeaderButtonComponent={InstagramHeaderButton}>
+              <Item title="call" iconName="phone-outline" />
+              <Item title="video" iconName="video-outline" />
             </HeaderButtons>
           ),
         }}

@@ -4,7 +4,7 @@ import { FlatList, StyleSheet } from "react-native";
 import Chat from "../components/Chat";
 import Search from "../components/Search";
 
-const ChatsScreen = () => {
+const ChatsScreen = ({ navigation }) => {
   return (
     <FlatList
       contentContainerStyle={styles.chatsSCreen}
@@ -14,7 +14,7 @@ const ChatsScreen = () => {
         index === 0 ? (
           <Search style={styles.searchContainer} placeholder="Search" />
         ) : (
-          <Chat />
+          <Chat navigation={navigation} />
         )
       }
     />
