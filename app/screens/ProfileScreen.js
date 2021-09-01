@@ -63,7 +63,10 @@ const ProfileScreen = ({ navigation }) => {
         >
           <Text style={{ color: colors.text }}>Edit Profile</Text>
         </InstagramButton>
-        <InstagramButton style={styles.discoverButton} onButtonPress={() => {}}>
+        <InstagramButton
+          style={{ ...styles.editProfileButton, ...styles.discoverButton }}
+          onButtonPress={() => {}}
+        >
           <MaterialIcons
             name="keyboard-arrow-down"
             size={23}
@@ -192,6 +195,8 @@ const styles = StyleSheet.create({
   editProfileButton: {
     width: "89%",
     height: 33,
+    borderColor: "#888",
+    borderWidth: 1,
   },
   discoverButton: {
     width: "9%",

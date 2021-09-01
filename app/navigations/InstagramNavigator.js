@@ -8,6 +8,7 @@ import { StatusBar } from "expo-status-bar";
 import { AppearanceProvider, useColorScheme } from "react-native-appearance";
 
 import InstagramTabNavigator from "./InstagramTabNavigator";
+import AuthStack from "./AuthStack";
 
 const InstagramNavigator = () => {
   const scheme = useColorScheme();
@@ -16,7 +17,7 @@ const InstagramNavigator = () => {
     <AppearanceProvider>
       <NavigationContainer theme={scheme === "dark" ? DarkTheme : DefaultTheme}>
         <StatusBar style="auto" />
-        <InstagramTabNavigator />
+        {true ? <AuthStack /> : <InstagramTabNavigator />}
       </NavigationContainer>
     </AppearanceProvider>
   );

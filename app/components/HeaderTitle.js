@@ -1,6 +1,7 @@
 import React from "react";
 import { Image, StyleSheet, View } from "react-native";
 import { useColorScheme } from "react-native-appearance";
+
 import instagramIcon from "../assets/images/instagram.png";
 import instagramDefaultIcon from "../assets/images/instagram-default.png";
 

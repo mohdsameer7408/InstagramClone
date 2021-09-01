@@ -41,8 +41,6 @@ export default InstagramButton;
 const styles = StyleSheet.create({
   buttonContainer: {
     overflow: "hidden",
-    borderColor: "#888",
-    borderWidth: 1,
     borderRadius: 4,
     // shadowColor: "#000",
     // shadowOffset: {
