@@ -1,5 +1,10 @@
 import React from "react";
-import { Dimensions, FlatList, StyleSheet, View } from "react-native";
+import {
+  Dimensions,
+  FlatList,
+  KeyboardAvoidingView,
+  StyleSheet,
+} from "react-native";
 import ChatBottom from "../components/ChatBottom";
 
 import ChatMessage from "../components/ChatMessage";
@@ -8,7 +13,11 @@ const { width } = Dimensions.get("window");
 
 const ChatScreen = () => {
   return (
-    <View style={styles.chatScreen}>
+    <KeyboardAvoidingView
+      style={styles.chatScreen}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={150}
+    >
       <FlatList
         contentContainerStyle={styles.chatMessages}
         data={Array(16).fill()}
@@ -17,7 +26,7 @@ const ChatScreen = () => {
         renderItem={({ index }) => <ChatMessage data={index} />}
       />
       <ChatBottom />
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 

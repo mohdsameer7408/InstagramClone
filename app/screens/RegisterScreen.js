@@ -1,5 +1,13 @@
 import React from "react";
-import { Dimensions, StatusBar, StyleSheet, Text, View } from "react-native";
+import {
+  Dimensions,
+  KeyboardAvoidingView,
+  Platform,
+  StatusBar,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
 
@@ -12,7 +20,11 @@ const RegisterScreen = ({ navigation }) => {
   const { colors } = useTheme();
 
   return (
-    <View style={styles.registerScreen}>
+    <KeyboardAvoidingView
+      style={styles.registerScreen}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={10}
+    >
       <View style={styles.header}>
         <View style={{ ...styles.account, borderColor: colors.text }}>
           <Feather name="user" color={colors.text} size={width * 0.15} />
@@ -39,7 +51,7 @@ const RegisterScreen = ({ navigation }) => {
           </Text>
         </Text>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 

@@ -2,6 +2,7 @@ import React from "react";
 import {
   Dimensions,
   Image,
+  KeyboardAvoidingView,
   StatusBar,
   StyleSheet,
   Text,
@@ -23,7 +24,11 @@ const LoginScreen = ({ navigation }) => {
   const imageUrl = scheme === "dark" ? instagramIcon : instagramDefaultIcon;
 
   return (
-    <View style={styles.loginScreen}>
+    <KeyboardAvoidingView
+      style={styles.loginScreen}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={10}
+    >
       <View style={styles.header}>
         <Image source={imageUrl} style={styles.icon} resizeMode="contain" />
         <View style={styles.form}>
@@ -48,7 +53,7 @@ const LoginScreen = ({ navigation }) => {
           </Text>
         </Text>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
