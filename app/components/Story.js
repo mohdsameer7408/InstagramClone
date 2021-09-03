@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 
+import StoryModal from "./StoryModal";
+
 const Story = ({ add }) => {
   const { colors } = useTheme();
+  const [isStoryOpened, setIsStoryOpened] = useState(false);
 
   return (
     <View style={styles.story}>
       <TouchableOpacity
         style={{ ...styles.imageContainer, borderWidth: add ? 0 : 2 }}
-        onPress={() => {}}
+        onPress={() => setIsStoryOpened(true)}
       >
         <Image
           source={{
@@ -33,6 +36,10 @@ const Story = ({ add }) => {
       <Text style={{ ...styles.userName, color: colors.text }}>
         {add ? "Your Story" : "meme_coding".slice(0, 10)}
       </Text>
+      <StoryModal
+        isStoryOpened={isStoryOpened}
+        closeStory={() => setIsStoryOpened(false)}
+      />
     </View>
   );
 };
