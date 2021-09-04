@@ -62,7 +62,7 @@ const EditProfileScreen = ({ navigation }) => {
         </Text>
         <View style={styles.form}>
           <FormInput label="Name" />
-          <FormInput label="Username" />
+          <FormInput label="User Name" />
           <FormInput label="Website" />
           <FormInput label="Bio" />
         </View>
