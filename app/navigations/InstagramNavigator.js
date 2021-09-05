@@ -17,7 +17,7 @@ const InstagramNavigator = () => {
     <AppearanceProvider>
       <NavigationContainer theme={scheme === "dark" ? DarkTheme : DefaultTheme}>
         <StatusBar style="auto" />
-        {false ? <AuthStack /> : <InstagramTabNavigator />}
+        {true ? <AuthStack /> : <InstagramTabNavigator />}
       </NavigationContainer>
     </AppearanceProvider>
   );
