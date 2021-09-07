@@ -34,7 +34,7 @@ const Story = ({ add }) => {
         )}
       </TouchableOpacity>
       <Text style={{ ...styles.userName, color: colors.text }}>
-        {add ? "Your Story" : "meme_coding".slice(0, 10)}
+        {add ? "Your Story" : "cyber_tech_security".slice(0, 10)}
       </Text>
       <StoryModal
         isStoryOpened={isStoryOpened}
