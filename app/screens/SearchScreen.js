@@ -10,7 +10,6 @@ const SearchScreen = () => {
   return (
     <View style={styles.container}>
       <Search style={styles.searchContainer} placeholder="Search" />
-      <Text style={{ color: colors.text }}>Search Screen</Text>
     </View>
   );
 };
