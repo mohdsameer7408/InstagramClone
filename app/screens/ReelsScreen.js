@@ -1,13 +1,27 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { useTheme } from "@react-navigation/native";
+import {
+  Dimensions,
+  FlatList,
+  StatusBar,
+  StyleSheet,
+  View,
+} from "react-native";
+
+import Reel from "../components/Reel";
+
+const { height } = Dimensions.get("window");
 
 const ReelsScreen = () => {
-  const { colors } = useTheme();
-
   return (
-    <View style={styles.container}>
-      <Text style={{ color: colors.text }}>Reels Screen</Text>
+    <View style={styles.reelsScreen}>
+      <FlatList
+        style={{ height: height * 0.925 }}
+        showsVerticalScrollIndicator={false}
+        pagingEnabled={true}
+        data={Array(5).fill()}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={() => <Reel />}
+      />
     </View>
   );
 };
@@ -15,9 +29,7 @@ const ReelsScreen = () => {
 export default ReelsScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+  reelsScreen: {
+    marginTop: StatusBar.currentHeight + 10,
   },
 });
