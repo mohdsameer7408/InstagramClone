@@ -1,30 +1,63 @@
+import React, { useEffect, useRef, useState } from "react";
 import { Feather, Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
-import React from "react";
+import { Video } from "expo-av";
 import {
   Dimensions,
   Image,
-  ImageBackground,
+  Pressable,
   StatusBar,
   StyleSheet,
   Text,
   View,
 } from "react-native";
+import { useIsFocused } from "@react-navigation/native";
 
 const { width, height } = Dimensions.get("window");
 
-const Reel = () => {
+const Reel = ({ navigation }) => {
   const { colors } = useTheme();
+  const videoRef = useRef(null);
+  const [isMuted, setIsMuted] = useState(false);
+  const isFocused = useIsFocused();
+
+  useEffect(() => {
+    if (videoRef) {
+      if (!isFocused) {
+        videoRef.current.pauseAsync();
+      } else {
+        videoRef.current.playAsync();
+      }
+    }
+  }, [isFocused, videoRef]);
+
+  const toggleReel = (action) => {
+    if (action === "pause") {
+      videoRef.current.pauseAsync();
+      setIsMuted((prevState) => !prevState);
+    } else {
+      videoRef.current.playAsync();
+      setIsMuted((prevState) => !prevState);
+    }
+  };
 
   return (
-    <ImageBackground
-      style={styles.reelContaienr}
-      resizeMode="cover"
-      source={{
-        uri: "https://i.pinimg.com/originals/97/d8/20/97d820675f0214b417d6545c899ec844.jpg",
-      }}
-    >
-      <View style={styles.reelWrapper}>
+    <View style={styles.reelContainer}>
+      <Video
+        ref={videoRef}
+        source={{
+          uri: "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
+        }}
+        style={styles.video}
+        resizeMode="cover"
+        isLooping
+        isMuted={isMuted}
+      />
+      <Pressable
+        style={styles.reelWrapper}
+        onLongPress={() => toggleReel("pause")}
+        onPressOut={() => toggleReel("play")}
+      >
         <View style={styles.footer}>
           <View style={styles.reelDetails}>
             <View style={styles.reelUserData}>
@@ -84,23 +117,30 @@ const Reel = () => {
             </View>
           </View>
         </View>
-      </View>
-    </ImageBackground>
+      </Pressable>
+    </View>
   );
 };
 
 export default Reel;
 
 const styles = StyleSheet.create({
-  reelContaienr: {
+  reelContainer: {
     width,
-    height: height * 0.925,
+    height: height - StatusBar.currentHeight - 60,
+  },
+  video: {
+    width,
+    height: height - StatusBar.currentHeight - 60,
   },
   reelWrapper: {
+    position: "absolute",
+    top: 0,
+    left: 0,
     width,
-    height: height * 0.925,
+    height: height - StatusBar.currentHeight - 60,
     justifyContent: "flex-end",
-    backgroundColor: "rgba(0, 0, 0, 0.3)",
+    backgroundColor: "rgba(0, 0, 0, 0.4)",
   },
   footer: {
     width: "100%",

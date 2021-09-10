@@ -11,16 +11,16 @@ import Reel from "../components/Reel";
 
 const { height } = Dimensions.get("window");
 
-const ReelsScreen = () => {
+const ReelsScreen = ({ navigation }) => {
   return (
     <View style={styles.reelsScreen}>
       <FlatList
-        style={{ height: height * 0.925 }}
+        style={{ height: height - StatusBar.currentHeight - 60 }}
         showsVerticalScrollIndicator={false}
         pagingEnabled={true}
         data={Array(5).fill()}
         keyExtractor={(item, index) => index.toString()}
-        renderItem={() => <Reel />}
+        renderItem={() => <Reel navigation={navigation} />}
       />
     </View>
   );
