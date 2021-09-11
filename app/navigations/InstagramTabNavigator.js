@@ -2,12 +2,14 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useTheme } from "@react-navigation/native";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
 import HomeStack from "./HomeStack";
 import ProfileStack from "./ProfileStack";
 import SearchScreen from "../screens/SearchScreen";
 import ReelsScreen from "../screens/ReelsScreen";
 import ActivityScreen from "../screens/ActivityScreen";
+import ChatHeaderButton from "../components/ChatHeaderButton";
 
 const Tab = createBottomTabNavigator();
 
@@ -54,11 +56,27 @@ const InstagramTabNavigator = () => {
     >
       <Tab.Screen name="HomeStack" component={HomeStack} />
       <Tab.Screen name="SearchScreen" component={SearchScreen} />
-      <Tab.Screen name="ReelsScreen" component={ReelsScreen} />
+      <Tab.Screen
+        name="ReelsScreen"
+        component={ReelsScreen}
+        options={{
+          headerShown: true,
+          headerTitle: "Reels",
+          headerTransparent: true,
+          headerRight: () => (
+            <HeaderButtons HeaderButtonComponent={ChatHeaderButton}>
+              <Item title="camera" iconName="camera-outline" />
+            </HeaderButtons>
+          ),
+        }}
+      />
       <Tab.Screen
         name="ActivityScreen"
         component={ActivityScreen}
-        options={{ headerShown: true, headerTitle: "Activity" }}
+        options={{
+          headerShown: true,
+          headerTitle: "Activity",
+        }}
       />
       <Tab.Screen name="ProfileStack" component={ProfileStack} />
     </Tab.Navigator>

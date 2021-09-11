@@ -15,10 +15,10 @@ import { useIsFocused } from "@react-navigation/native";
 
 const { width, height } = Dimensions.get("window");
 
-const Reel = ({ navigation }) => {
+const Reel = () => {
   const { colors } = useTheme();
   const videoRef = useRef(null);
-  const [isMuted, setIsMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
   const isFocused = useIsFocused();
 
   useEffect(() => {

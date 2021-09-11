@@ -20,7 +20,7 @@ const ReelsScreen = ({ navigation }) => {
         pagingEnabled={true}
         data={Array(5).fill()}
         keyExtractor={(item, index) => index.toString()}
-        renderItem={() => <Reel navigation={navigation} />}
+        renderItem={() => <Reel />}
       />
     </View>
   );
@@ -30,6 +30,6 @@ export default ReelsScreen;
 
 const styles = StyleSheet.create({
   reelsScreen: {
-    marginTop: StatusBar.currentHeight + 10,
+    marginTop: StatusBar.currentHeight,
   },
 });
