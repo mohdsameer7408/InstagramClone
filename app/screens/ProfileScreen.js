@@ -222,7 +222,7 @@ const styles = StyleSheet.create({
   },
   postImage: {
     width: width * 0.33,
-    height: 120,
+    height: 130,
     marginBottom: 3,
   },
 });
