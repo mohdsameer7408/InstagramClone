@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import {
   Dimensions,
   Image,
@@ -19,9 +19,10 @@ const { width } = Dimensions.get("window");
 
 const EditProfileScreen = ({ navigation }) => {
   const { colors } = useTheme();
+  const { isAlertOpened, setIsAlertOpened } = useState(false);
 
   const profileSaveHandler = () => {
-    navigation.pop();
+    setIsAlertOpened(true);
   };
 
   useLayoutEffect(() => {
@@ -41,11 +42,17 @@ const EditProfileScreen = ({ navigation }) => {
       keyboardVerticalOffset={-30}
     >
       <InstagramAlert
-        isAlertOpened={false}
+        isAlertOpened={isAlertOpened}
         title="Unsaved Changes"
         message="Do you want to leave the changes that you made to your profile!"
         buttons={[
-          { text: "Ok", onPress: () => {} },
+          {
+            text: "Ok",
+            onPress: () => {
+              setIsAlertOpened(false);
+              navigation.pop();
+            },
+          },
           { text: "Cancel", onPress: () => {}, type: "danger" },
         ]}
       />
