@@ -13,7 +13,7 @@ import Search from "../components/Search";
 
 const { width } = Dimensions.get("window");
 
-const SearchScreen = () => {
+const SearchScreen = ({ navigation }) => {
   return (
     <FlatList
       style={styles.searchScreen}
@@ -27,7 +27,7 @@ const SearchScreen = () => {
         <View style={{ width: "100%", height: 1 }} />
       )}
       renderItem={() => (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("PostsScreen")}>
           <Image
             style={styles.postImage}
             resizeMode="cover"
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     width: "95%",
     height: 34,
     marginBottom: 10,
-    borderRadius: 8,
+    borderRadius: 12,
     alignSelf: "center",
   },
   postImage: {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FlatList } from "react-native";
-import Post from "../components/Post";
 
+import Post from "../components/Post";
 import Stories from "../components/Stories";
 
 let timeoutId = null;

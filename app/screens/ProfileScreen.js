@@ -109,7 +109,12 @@ const ProfileScreen = ({ navigation }) => {
           {Array(12)
             .fill()
             .map((_, index) => (
-              <TouchableOpacity key={index}>
+              <TouchableOpacity
+                key={index}
+                onPress={() =>
+                  navigation.navigate("PostsScreen", { tagged: false })
+                }
+              >
                 <Image
                   source={{
                     uri: "https://i.pinimg.com/originals/97/d8/20/97d820675f0214b417d6545c899ec844.jpg",
@@ -125,7 +130,12 @@ const ProfileScreen = ({ navigation }) => {
           {Array(7)
             .fill()
             .map((_, index) => (
-              <TouchableOpacity key={index}>
+              <TouchableOpacity
+                key={index}
+                onPress={() =>
+                  navigation.navigate("PostsScreen", { tagged: true })
+                }
+              >
                 <Image
                   source={{
                     uri: "https://i.pinimg.com/originals/97/d8/20/97d820675f0214b417d6545c899ec844.jpg",

@@ -19,7 +19,7 @@ const { width } = Dimensions.get("window");
 
 const EditProfileScreen = ({ navigation }) => {
   const { colors } = useTheme();
-  const { isAlertOpened, setIsAlertOpened } = useState(false);
+  const [isAlertOpened, setIsAlertOpened] = useState(false);
 
   const profileSaveHandler = () => {
     setIsAlertOpened(true);

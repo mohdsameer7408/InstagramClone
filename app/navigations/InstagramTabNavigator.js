@@ -6,10 +6,10 @@ import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
 import HomeStack from "./HomeStack";
 import ProfileStack from "./ProfileStack";
-import SearchScreen from "../screens/SearchScreen";
 import ReelsScreen from "../screens/ReelsScreen";
 import ActivityScreen from "../screens/ActivityScreen";
 import ChatHeaderButton from "../components/ChatHeaderButton";
+import SearchStack from "./SearchStack";
 
 const Tab = createBottomTabNavigator();
 
@@ -34,7 +34,7 @@ const InstagramTabNavigator = () => {
 
           if (route.name === "HomeStack") {
             iconName = focused ? "home-sharp" : "home-outline";
-          } else if (route.name === "SearchScreen") {
+          } else if (route.name === "SearchStack") {
             iconName = "search";
           } else if (route.name === "ReelsScreen") {
             return (
@@ -55,7 +55,7 @@ const InstagramTabNavigator = () => {
       })}
     >
       <Tab.Screen name="HomeStack" component={HomeStack} />
-      <Tab.Screen name="SearchScreen" component={SearchScreen} />
+      <Tab.Screen name="SearchStack" component={SearchStack} />
       <Tab.Screen
         name="ReelsScreen"
         component={ReelsScreen}
