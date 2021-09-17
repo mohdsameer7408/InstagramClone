@@ -39,11 +39,11 @@ export default ChatBottom;
 const styles = StyleSheet.create({
   chatBottom: {
     width: width * 0.98,
-    height: 56,
+    height: 48,
     borderRadius: width * 0.15,
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 10,
+    paddingHorizontal: 4,
   },
   chatLeft: {
     width: 40,

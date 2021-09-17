@@ -15,6 +15,8 @@ const SearchStack = () => {
       screenOptions={{
         headerShown: false,
         headerStyle: { backgroundColor: colors.background },
+        headerBackTitleVisible: false,
+        headerTitleAlign: "left",
       }}
     >
       <Stack.Screen name="SearchScreen" component={SearchScreen} />

@@ -20,6 +20,8 @@ const HomeStack = () => {
       initialRouteName="HomeScreen"
       screenOptions={{
         headerStyle: { backgroundColor: colors.background },
+        headerBackTitleVisible: false,
+        headerTitleAlign: "left",
       }}
     >
       <Stack.Screen

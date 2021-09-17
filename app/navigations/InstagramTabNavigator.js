@@ -24,7 +24,7 @@ const InstagramTabNavigator = () => {
         headerStyle: { backgroundColor: colors.background },
         tabBarStyle: {
           backgroundColor: colors.background,
-          height: 60,
+          // height: 60,
         },
         tabBarActiveTintColor: colors.text,
         tabBarInactiveTintColor: colors.text,

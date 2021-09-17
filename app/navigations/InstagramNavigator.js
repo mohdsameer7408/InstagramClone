@@ -10,12 +10,23 @@ import { AppearanceProvider, useColorScheme } from "react-native-appearance";
 import InstagramTabNavigator from "./InstagramTabNavigator";
 import AuthStack from "./AuthStack";
 
+const CustomDefaultTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: "rgb(255, 255, 255)",
+    card: "rgb(242, 242, 242)",
+  },
+};
+
 const InstagramNavigator = () => {
   const scheme = useColorScheme();
 
   return (
     <AppearanceProvider>
-      <NavigationContainer theme={scheme === "dark" ? DarkTheme : DefaultTheme}>
+      <NavigationContainer
+        theme={scheme === "dark" ? DarkTheme : CustomDefaultTheme}
+      >
         <StatusBar style="auto" />
         {false ? <AuthStack /> : <InstagramTabNavigator />}
       </NavigationContainer>

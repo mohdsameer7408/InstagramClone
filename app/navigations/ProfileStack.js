@@ -19,6 +19,8 @@ const ProfileStack = () => {
       initialRouteName="ProfileScreen"
       screenOptions={{
         headerStyle: { backgroundColor: colors.background },
+        headerBackTitleVisible: false,
+        headerTitleAlign: "left",
       }}
     >
       <Stack.Screen
