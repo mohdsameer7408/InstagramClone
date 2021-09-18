@@ -9,6 +9,7 @@ import InstagramHeaderButton from "../components/InstagramHeaderButton";
 import ChatsScreen from "../screens/ChatsScreen";
 import ChatScreen from "../screens/ChatScreen";
 import ChatHeaderTitle from "../components/ChatHeaderTitle";
+import CreatePostScreen from "../screens/CreatePostScreen";
 
 const Stack = createStackNavigator();
 
@@ -31,7 +32,11 @@ const HomeStack = () => {
           headerTitle: (props) => <HeaderTitle {...props} />,
           headerRight: () => (
             <HeaderButtons HeaderButtonComponent={InstagramHeaderButton}>
-              <Item title="post" iconName="plus-box-outline" />
+              <Item
+                title="post"
+                iconName="plus-box-outline"
+                onPress={() => navigation.navigate("CreatePostScreen")}
+              />
               <Item
                 title="message"
                 iconName="facebook-messenger"
@@ -65,6 +70,13 @@ const HomeStack = () => {
               <Item title="video" iconName="video-outline" />
             </HeaderButtons>
           ),
+        }}
+      />
+      <Stack.Screen
+        name="CreatePostScreen"
+        component={CreatePostScreen}
+        options={{
+          headerTitle: "New Post",
         }}
       />
     </Stack.Navigator>
