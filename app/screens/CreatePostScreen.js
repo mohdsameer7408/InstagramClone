@@ -1,5 +1,6 @@
-import React, { useLayoutEffect } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import {
+  Alert,
   Dimensions,
   Image,
   StyleSheet,
@@ -10,6 +11,7 @@ import {
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import * as ImagePicker from "expo-image-picker";
 
 import InstagramSecondaryHeaderButton from "../components/InstagramSecondaryHeaderButton";
 
@@ -17,6 +19,8 @@ const { width } = Dimensions.get("window");
 
 const CreatePostScreen = ({ navigation }) => {
   const { colors } = useTheme();
+  const [image, setImage] = useState(null);
+  const [caption, setCaption] = useState("");
 
   const savePostHandler = () => {
     navigation.pop();
@@ -33,15 +37,42 @@ const CreatePostScreen = ({ navigation }) => {
     });
   }, [navigation, savePostHandler]);
 
+  const takeImageHandler = async () => {
+    try {
+      const { granted } =
+        await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+      if (!granted) {
+        Alert.alert(
+          "Insufficient Permissions",
+          "Your need to provide camera permissions to take pictures!"
+        );
+        return;
+      }
+
+      const imageData = await ImagePicker.launchCameraAsync({
+        allowsEditing: true,
+        aspect: [10, 9],
+        quality: 0.2,
+      });
+
+      setImage(imageData.uri);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <View style={styles.createPostScreen}>
       <View style={styles.inputsContainer}>
-        <TouchableOpacity onPress={() => {}}>
+        <TouchableOpacity onPress={takeImageHandler}>
           <Image
             style={styles.imageInput}
             resizeMode="cover"
             source={{
-              uri: "https://i.pinimg.com/originals/97/d8/20/97d820675f0214b417d6545c899ec844.jpg",
+              uri: image
+                ? image
+                : "https://i.pinimg.com/originals/97/d8/20/97d820675f0214b417d6545c899ec844.jpg",
             }}
           />
         </TouchableOpacity>
@@ -49,6 +80,8 @@ const CreatePostScreen = ({ navigation }) => {
           placeholder="Write a caption..."
           placeholderTextColor="#ccc"
           style={{ ...styles.captionInput, color: colors.text }}
+          value={caption}
+          onChangeText={setCaption}
         />
       </View>
       <View style={styles.inputsContainer}>
