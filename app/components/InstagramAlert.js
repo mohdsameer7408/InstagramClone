@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
     marginTop: 23,
     fontSize: 18,
     fontWeight: "bold",
+    textAlign: "center",
   },
   alertMessage: {
     marginTop: 14,
@@ -109,5 +110,8 @@ const styles = StyleSheet.create({
     borderTopWidth: 0.4,
     justifyContent: "center",
     alignItems: "center",
+  },
+  buttonText: {
+    fontWeight: "bold",
   },
 });

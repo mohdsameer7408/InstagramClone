@@ -1,6 +1,5 @@
 import React, { useState, useLayoutEffect } from "react";
 import {
-  Alert,
   Dimensions,
   Image,
   StyleSheet,
@@ -14,6 +13,7 @@ import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import * as ImagePicker from "expo-image-picker";
 
 import InstagramSecondaryHeaderButton from "../components/InstagramSecondaryHeaderButton";
+import InstagramAlert from "../components/InstagramAlert";
 
 const { width } = Dimensions.get("window");
 
@@ -21,6 +21,7 @@ const CreatePostScreen = ({ navigation }) => {
   const { colors } = useTheme();
   const [image, setImage] = useState(null);
   const [caption, setCaption] = useState("");
+  const [isAlertOpened, setIsAlertOpened] = useState(false);
 
   const savePostHandler = () => {
     navigation.pop();
@@ -43,10 +44,7 @@ const CreatePostScreen = ({ navigation }) => {
         await ImagePicker.requestMediaLibraryPermissionsAsync();
 
       if (!granted) {
-        Alert.alert(
-          "Insufficient Permissions",
-          "Your need to provide camera permissions to take pictures!"
-        );
+        setIsAlertOpened(true);
         return;
       }
 
@@ -92,6 +90,12 @@ const CreatePostScreen = ({ navigation }) => {
           Add Location
         </Text>
       </View>
+      <InstagramAlert
+        isAlertOpened={isAlertOpened}
+        title="Insufficient Permissions"
+        message="Your need to provide camera permissions to take pictures!"
+        closeAlert={() => setIsAlertOpened(false)}
+      />
     </View>
   );
 };
