@@ -23,7 +23,8 @@ const HomeScreen = () => {
       keyExtractor={(item) => item.toString()}
       refreshing={isRefreshing}
       onRefresh={loadPosts}
-      renderItem={({ item, index }) => (index === 0 ? <Stories /> : <Post />)}
+      ListHeaderComponent={<Stories />}
+      renderItem={() => <Post />}
     />
   );
 };
