@@ -6,9 +6,11 @@ import {
 } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { AppearanceProvider, useColorScheme } from "react-native-appearance";
+import { useSelector } from "react-redux";
 
 import InstagramTabNavigator from "./InstagramTabNavigator";
 import AuthStack from "./AuthStack";
+import { selectUser } from "../features/authSlice";
 
 const CustomDefaultTheme = {
   ...DefaultTheme,
@@ -21,6 +23,7 @@ const CustomDefaultTheme = {
 
 const InstagramNavigator = () => {
   const scheme = useColorScheme();
+  const user = useSelector(selectUser);
 
   return (
     <AppearanceProvider>
@@ -28,7 +31,7 @@ const InstagramNavigator = () => {
         theme={scheme === "dark" ? DarkTheme : CustomDefaultTheme}
       >
         <StatusBar style="auto" />
-        {false ? <AuthStack /> : <InstagramTabNavigator />}
+        {user ? <InstagramTabNavigator /> : <AuthStack />}
       </NavigationContainer>
     </AppearanceProvider>
   );

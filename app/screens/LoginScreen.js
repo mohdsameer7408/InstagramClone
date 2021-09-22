@@ -10,11 +10,13 @@ import {
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { useColorScheme } from "react-native-appearance";
+import { useDispatch } from "react-redux";
 
 import AuthInput from "../components/AuthInput";
 import InstagramButton from "../components/InstagramButton";
 import instagramIcon from "../assets/images/instagram.png";
 import instagramDefaultIcon from "../assets/images/instagram-default.png";
+import { signIn } from "../features/authSlice";
 
 const { width, height } = Dimensions.get("window");
 
@@ -22,6 +24,7 @@ const LoginScreen = ({ navigation }) => {
   const { colors } = useTheme();
   const scheme = useColorScheme();
   const imageUrl = scheme === "dark" ? instagramIcon : instagramDefaultIcon;
+  const dispatch = useDispatch();
 
   return (
     <KeyboardAvoidingView
@@ -37,6 +40,7 @@ const LoginScreen = ({ navigation }) => {
           <InstagramButton
             buttonColor={colors.primary}
             style={styles.signupButton}
+            onButtonPress={() => dispatch(signIn())}
           >
             <Text style={styles.buttonText}>Log In</Text>
           </InstagramButton>

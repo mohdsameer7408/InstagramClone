@@ -10,14 +10,17 @@ import {
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
+import { useDispatch } from "react-redux";
 
 import AuthInput from "../components/AuthInput";
 import InstagramButton from "../components/InstagramButton";
+import { signIn } from "../features/authSlice";
 
 const { width, height } = Dimensions.get("window");
 
 const RegisterScreen = ({ navigation }) => {
   const { colors } = useTheme();
+  const dispatch = useDispatch();
 
   return (
     <KeyboardAvoidingView
@@ -35,6 +38,7 @@ const RegisterScreen = ({ navigation }) => {
           <InstagramButton
             buttonColor={colors.primary}
             style={styles.signupButton}
+            onButtonPress={() => dispatch(signIn())}
           >
             <Text style={styles.buttonText}>Sign Up</Text>
           </InstagramButton>
