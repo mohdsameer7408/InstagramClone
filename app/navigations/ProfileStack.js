@@ -8,6 +8,7 @@ import InstagramHeaderButton from "../components/InstagramHeaderButton";
 import ProfileScreen from "../screens/ProfileScreen";
 import EditProfileScreen from "../screens/EditProfileScreen";
 import PostsScreen from "../screens/PostsScreen";
+import CreatePostScreen from "../screens/CreatePostScreen";
 
 const Stack = createStackNavigator();
 
@@ -26,15 +27,19 @@ const ProfileStack = () => {
       <Stack.Screen
         name="ProfileScreen"
         component={ProfileScreen}
-        options={{
+        options={({ navigation }) => ({
           headerTitle: "meme_coding",
           headerRight: () => (
             <HeaderButtons HeaderButtonComponent={InstagramHeaderButton}>
-              <Item title="post" iconName="plus-box-outline" />
+              <Item
+                title="post"
+                iconName="plus-box-outline"
+                onPress={() => navigation.navigate("CreatePostScreen")}
+              />
               <Item title="message" iconName="menu" />
             </HeaderButtons>
           ),
-        }}
+        })}
       />
       <Stack.Screen
         name="EditProfileScreen"
@@ -68,6 +73,11 @@ const ProfileStack = () => {
               </TouchableOpacity>
             ),
         })}
+      />
+      <Stack.Screen
+        name="CreatePostScreen"
+        component={CreatePostScreen}
+        options={{ headerTitle: "New Post" }}
       />
     </Stack.Navigator>
   );
